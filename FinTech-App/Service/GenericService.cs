@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-
 public class GenericService<T, K> : IGenericService<T, K> where T : class, GenericModel<K>
 {
     protected readonly FinTechDbContext _context;

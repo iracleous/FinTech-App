@@ -47,6 +47,7 @@ namespace FinTech_App.Service
                 DateTime = DateTime.Now,
                 TransactionCategory = transactionDto.Category,
             };
+            return finTechTransaction.Id;
         }
 
 
