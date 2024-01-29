@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinTech-App", "FinTech-App\FinTech-App.csproj", "{EB756B27-0A29-4B26-A629-BA0E6FE19A0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinTech-Api", "FinTech-App\FinTech-Api.csproj", "{EB756B27-0A29-4B26-A629-BA0E6FE19A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinTechApp", "FinTechApp\FinTechApp.csproj", "{AF891047-D4C1-4F53-B49F-D42633D16546}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EB756B27-0A29-4B26-A629-BA0E6FE19A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB756B27-0A29-4B26-A629-BA0E6FE19A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB756B27-0A29-4B26-A629-BA0E6FE19A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF891047-D4C1-4F53-B49F-D42633D16546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF891047-D4C1-4F53-B49F-D42633D16546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF891047-D4C1-4F53-B49F-D42633D16546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF891047-D4C1-4F53-B49F-D42633D16546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
