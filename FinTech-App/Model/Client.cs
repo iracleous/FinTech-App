@@ -6,6 +6,6 @@
         public string Name { get; set; } = "";
         public string Email { get; set; } = "";
         public DateOnly DateOfBirth { get; set; }
-        public Guid Identidier { get; set; }
+        public Guid Identidier { get; set; } = Guid.NewGuid();
     }
 }

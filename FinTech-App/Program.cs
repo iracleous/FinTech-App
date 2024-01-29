@@ -10,8 +10,9 @@ builder.Services.AddControllers();
 
 var optionsCon = builder.Configuration.GetConnectionString("MyConn");
 builder.Services.AddDbContext<FinTechDbContext>(options => options.UseSqlServer(optionsCon));
-builder.Services.AddScoped<IGenericService<Client, long>, GenericService<Client, long>>();
-builder.Services.AddScoped<IGenericService<Account, long>, GenericService<Account, long>>();
+//builder.Services.AddScoped<IGenericService<Client, long>, GenericService<Client, long>>();
+//builder.Services.AddScoped<IGenericService<Account, long>, GenericService<Account, long>>();
+builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
 
 var app = builder.Build();
 

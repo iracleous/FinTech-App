@@ -12,9 +12,9 @@ namespace FinTech_App.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ClientsController : GenericController<Client, long>
+public class ClientController : GenericController<Client, long>
 {
-    public ClientsController(IGenericService<Client, long> service) : base(service)
+    public ClientController(IGenericService<Client, long> service) : base(service)
     {
     }
 }

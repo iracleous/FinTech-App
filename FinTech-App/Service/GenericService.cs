@@ -8,23 +8,24 @@ using Microsoft.EntityFrameworkCore;
 
 public class GenericService<T, K> : IGenericService<T, K> where T : class, GenericModel<K>
 {
-    private readonly FinTechDbContext _context;
-    private ILogger<ClientService> _logger;
+    protected readonly FinTechDbContext _context;
+    protected readonly ILogger<GenericService<T, K>> _logger;
 
-    public GenericService(FinTechDbContext context, ILogger<ClientService> logger)
+    public GenericService(FinTechDbContext context, ILogger<GenericService<T, K>> logger)
     {
         _context = context;
         _logger = logger;
     }
-
 
     public async Task<ActionResult<T>> Create(T t)
     {
         _logger.LogInformation("Method Create starting");
         _context.Set<T>().Add(t);
         await _context.SaveChangesAsync();
+        var result = new CreatedAtActionResult("","GetT", new { id = t.Id }, t);
         return t;
-    }
+    
+     }
 
     public async Task<IActionResult> Delete(K id)
     {
@@ -48,7 +49,6 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
         {
             return new NotFoundResult();
         }
-
         return t;
     }
 
@@ -61,13 +61,11 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
     public async Task<IActionResult> Update(K id, T t)
     {
         _logger.LogInformation("Method UpdateClient starting");
-        if (! (id.Equals(t.Id)))
+        if (!id.Equals(t.Id))
         {
             return new BadRequestResult();
         }
-
         _context.Entry(t).State = EntityState.Modified;
-
         try
         {
             await _context.SaveChangesAsync();
@@ -83,10 +81,8 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
                 throw;
             }
         }
-
         return new NoContentResult();
     }
-
 
     private bool ClientExists(K id)
     {

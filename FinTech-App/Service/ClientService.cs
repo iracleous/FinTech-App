@@ -7,7 +7,7 @@ namespace FinTech_App.Service;
 public class ClientService : IClientService
 {
     private readonly FinTechDbContext _context;
-    private ILogger<ClientService> _logger;
+    private readonly ILogger<ClientService> _logger;
 
     public ClientService(FinTechDbContext context, ILogger<ClientService> logger)
     {
