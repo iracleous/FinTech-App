@@ -60,6 +60,10 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
     public async Task<IActionResult> Update(K id, T t)
     {
         _logger.LogInformation("Method UpdateClient starting");
+        if (id == null)
+        {
+            return new NotFoundResult();
+        }
         if (!id.Equals(t.Id))
         {
             return new BadRequestResult();
@@ -85,6 +89,10 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
 
     private bool ClientExists(K id)
     {
+        if (id == null)
+        {
+            return false;
+        }
         return _context.Set<T>().Any(e => id.Equals(e.Id));
     }
 }

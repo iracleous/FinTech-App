@@ -14,7 +14,7 @@ public class FinTechDbContext:DbContext
       //  string connectionString = "Data Source=(local);Initial Catalog=finTech-2024; Integrated Security = True;TrustServerCertificate=True;";
 
         var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        var connectionString = MyConfig.GetValue<string>("AppSettings:MyConn");
+        var connectionString = MyConfig.GetValue<string>("MyConn");
 
         optionsBuilder.UseSqlServer(connectionString);
     }

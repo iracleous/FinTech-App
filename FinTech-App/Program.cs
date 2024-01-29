@@ -14,6 +14,8 @@ builder.Services.AddDbContext<FinTechDbContext>(options => options.UseSqlServer(
 //builder.Services.AddScoped<IGenericService<Account, long>, GenericService<Account, long>>();
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
 
+builder.Services.AddScoped<IFinTransactionService, FinTransactionService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

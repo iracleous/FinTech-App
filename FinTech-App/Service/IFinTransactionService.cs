@@ -8,7 +8,6 @@ public interface IFinTransactionService:IGenericService<FinTechTransaction, long
 {
     public Task<ActionResult<long>> WithdrawTransactionAsync(TransactionDto transactionDto);
     public Task<ActionResult<List<FinTechTransaction>>>
-        GetClientTransactionsPagedAsync(int pageCount,int pageSize, long CustomerId,
-        DateOnly startingDate, DateOnly endingDate);
+        GetClientTransactionsPagedAsync(ViewTransactionsDto viewTransactionsDto);
 
 }
