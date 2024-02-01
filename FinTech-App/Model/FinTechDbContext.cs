@@ -8,14 +8,10 @@ public class FinTechDbContext:DbContext
     public DbSet<Account> Accounts { get; set; }
     public DbSet<FinTechTransaction> Transactions { get; set; }
 
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      //  string connectionString = "Data Source=(local);Initial Catalog=finTech-2024; Integrated Security = True;TrustServerCertificate=True;";
-
         var MyConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
         var connectionString = MyConfig.GetValue<string>("MyConn");
-
         optionsBuilder.UseSqlServer(connectionString);
     }
 
@@ -33,6 +29,4 @@ public class FinTechDbContext:DbContext
             .HasPrecision(12, 2);
         base.OnModelCreating(modelBuilder);
     }
-
-
 }

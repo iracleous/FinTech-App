@@ -4,8 +4,7 @@ using FinTech_App.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
-public class GenericService<T, K> : IGenericService<T, K> where T : class, GenericModel<K>
+public class GenericService<T, K> : IGenericService<T, K> where T : class, IGenericModel<K>
 {
     protected readonly FinTechDbContext _context;
     protected readonly ILogger<GenericService<T, K>> _logger;
@@ -16,6 +15,11 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
         _logger = logger;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns>the input object with Id from the db</returns>
     public async Task<ActionResult<T>> Create(T t)
     {
         _logger.LogInformation("Method Create starting");
@@ -23,7 +27,6 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
         await _context.SaveChangesAsync();
         var result = new CreatedAtActionResult("","GetT", new { id = t.Id }, t);
         return t;
-    
      }
 
     public async Task<IActionResult> Delete(K id)
@@ -36,7 +39,6 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, Gener
         }
         _context.Set<T>().Remove(t);
         await _context.SaveChangesAsync();
-
         return new NoContentResult();
     }
 

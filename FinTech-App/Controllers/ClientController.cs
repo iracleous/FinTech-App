@@ -14,6 +14,7 @@ namespace FinTech_App.Controllers;
 [ApiController]
 public class ClientController : GenericController<Client, long>
 {
+    
     public ClientController(IGenericService<Client, long> service) : base(service)
     {
     }

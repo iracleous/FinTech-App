@@ -15,7 +15,6 @@ public class ClientService : IClientService
         _logger = logger;
     }
 
-
     public async Task<ActionResult<Client>> CreateClient(Client client)
     {
         _logger.LogInformation("Method CreateClient starting");
@@ -34,7 +33,6 @@ public class ClientService : IClientService
         }
         _context.Clients.Remove(client);
         await _context.SaveChangesAsync();
-
         return new NoContentResult();
     }
 
@@ -46,7 +44,6 @@ public class ClientService : IClientService
         {
             return new NotFoundResult();
         }
-         
         return client;
     }
 
@@ -63,9 +60,7 @@ public class ClientService : IClientService
         {
             return new BadRequestResult();
         }
-
         _context.Entry(client).State = EntityState.Modified;
-
         try
         {
             await _context.SaveChangesAsync();
@@ -81,10 +76,8 @@ public class ClientService : IClientService
                 throw;
             }
         }
-
         return new NoContentResult();
     }
-
 
     private bool ClientExists(long id)
     {

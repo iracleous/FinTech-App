@@ -1,5 +1,8 @@
+using FinTech_App.Model;
+using FinTechApp.Communication;
 using FinTechApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace FinTechApp.Controllers
@@ -21,6 +24,29 @@ namespace FinTechApp.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Client()
+        {
+            return View(ClientData.GetClients());
+        }
+
+        public IActionResult CreateClient()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DoCreateClient(Client client) {
+            ClientData.CreateClient(client);
+            return Redirect("Client");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteClient(long clientId)
+        {
+            ClientData.DeleteClient(clientId);
+            return Redirect("Client");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

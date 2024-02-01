@@ -1,7 +1,6 @@
-﻿namespace FinTech_App.Model
+﻿namespace FinTech_App.Model;
+
+public enum TransactionCategory
 {
-    public enum TransactionCategory
-    {
-        Withdraw, Deposit, CheckBalance, Information
-    }
+    Withdraw, Deposit, CheckBalance, Information
 }

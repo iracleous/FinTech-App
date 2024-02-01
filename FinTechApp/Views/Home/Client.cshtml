@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<FinTech_App.Model.Client>
+
+<style type="text/css" media="screen">
+
+    #clientTable {
+        border-collapse: collapse;
+        border: 1px solid #000000;
+    }
+
+        #clientTable td, #clientTable th {
+            border: 1px solid #000000;
+        }
+</style>
+
+
+
+<h1> Clients</h1>
+
+<table id="clientTable">
+    <tr  ><th>Name</th><th>Email</th><th>DateOfBirth</th><th>Identidier</th><th>Action</th></tr>
+
+@foreach(var client in Model )
+{
+        <tr  >
+            <td>@client.Name </td>
+            <td>@client.Email </td>             
+            <td>@client.DateOfBirth </td>
+            <td>@client.Identidier </td>
+            <td>
+
+                <form asp-action="DeleteClient">
+                    <input type="hidden" name="clientId" asp-for="@client.Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                </form>
+
+            </td>
+        </tr>
+}
+
+    </table>
+
+<hr />
+<a asp-controller="Home" asp-action="CreateClient">Create Client</a> 

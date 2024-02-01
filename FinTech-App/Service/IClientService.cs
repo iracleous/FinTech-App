@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace FinTech_App.Service;
 
 
-//synchronous
+/// <summary>
+/// synchronous service specification
+/// </summary>
 public interface IClientService2
 {
     //CRUD 5 services
@@ -15,7 +17,10 @@ public interface IClientService2
     public bool DeleteClient(long clientId);
 }
 
-// asynchronous call
+/// <summary>
+/// asynchronous service specification
+/// and usage of ActionResult
+/// </summary>
 public interface IClientService
 {
     //CRUD 5 services

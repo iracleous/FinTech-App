@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FinTech-App\FinTech-Api.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace FinTech_App.Model;
 
-public class FinTechTransaction: GenericModel<long>
+public class FinTechTransaction: IGenericModel<long>
 {
     public long Id { get; set; }
  
