@@ -31,14 +31,20 @@ namespace FinTechApp.Controllers
             return View(ClientData.GetClients());
         }
 
+        public async Task<IActionResult> aClient(int id)
+        {
+            return View(await ClientData.GetClientAsync(id));
+        }
+
         public IActionResult CreateClient()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult DoCreateClient(Client client) {
-            ClientData.CreateClient(client);
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DoCreateClient(Client client) {
+            await ClientData.CreateClientAsync(client);
             return Redirect("Client");
         }
 

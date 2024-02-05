@@ -21,28 +21,34 @@
 
 <h1> Clients</h1>
 
-<table id="clientTable">
-    <tr  ><th>Name</th><th>Email</th><th>DateOfBirth</th><th>Identidier</th><th>Action</th></tr>
-
-@foreach(var client in Model )
+@if (Model.Count != 0)
 {
-        <tr  >
-            <td>@client.Name </td>
-            <td>@client.Email </td>             
-            <td>@client.DateOfBirth </td>
-            <td>@client.Identidier </td>
-            <td>
+    <table id="clientTable">
+        <tr  ><th>Name</th><th>Email</th><th>DateOfBirth</th><th>Identidier</th><th>Action</th></tr>
 
-                <form asp-action="DeleteClient">
-                    <input type="hidden" name="clientId" asp-for="@client.Id" />
-                    <input type="submit" value="Delete" class="btn btn-danger" /> |
-                </form>
+        @foreach (var client in Model)
+        {
+            <tr  >
+                <td>@client.Name </td>
+                <td>@client.Email </td>             
+                <td>@client.DateOfBirth </td>
+                <td>@client.Identidier </td>
+                <td>
+                    <a asp-controller="Home" asp-action="aclient" asp-route-id="@client.Id">Details</a>
+                    <form asp-action="DeleteClient">
+                        <input type="hidden" name="clientId" asp-for="@client.Id" />
+                        <input type="submit" value="Delete" class="btn btn-danger" /> 
+                    </form>
 
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
 
     </table>
-
+}
+else
+{
+    <p> There are no records!</p>
+}
 <hr />
 <a asp-controller="Home" asp-action="CreateClient">Create Client</a> 

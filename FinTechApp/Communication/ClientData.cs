@@ -8,7 +8,19 @@ namespace FinTechApp.Communication
     {
         private static readonly string url = "https://localhost:7270/api/Client";
 
-        public static List<Client>? GetClients()
+
+        public static async Task<Client?> GetClientAsync(int clientId)
+        {
+            using HttpClient httpClient = new();
+            httpClient.BaseAddress = new Uri(url+ "/" + clientId);
+            var response = await httpClient.GetAsync("");
+            var empResponse = await response.Content.ReadAsStringAsync();
+            var client =  JsonConvert.DeserializeObject<Client>(empResponse);
+            return client;
+        }
+
+
+            public static List<Client>? GetClients()
         {
             using HttpClient client = new();
             client.BaseAddress = new Uri(url);
@@ -43,6 +55,19 @@ namespace FinTechApp.Communication
                 clientResult = dataResponse;
             }
             return clientResult;
+        }
+
+
+        public static async Task<Client?> CreateClientAsync(Client client)
+        {
+            using HttpClient httpClient = new();
+            httpClient.BaseAddress = new Uri(url);
+            var dataRequest = JsonConvert.SerializeObject(client);
+            HttpContent httpContent = new StringContent(dataRequest, Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(url, httpContent);
+            var EmpResponse = await response.Content.ReadAsStringAsync();
+            var dataResponse = JsonConvert.DeserializeObject<Client>(EmpResponse);
+            return dataResponse;
         }
 
         public static void DeleteClient(long clientId)
