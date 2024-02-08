@@ -6,8 +6,8 @@ namespace FinTech_App.Service;
 
 public interface IFinTransactionService:IGenericService<FinTechTransaction, long>
 {
-    public Task<ActionResult<long>> WithdrawTransactionAsync(TransactionDto transactionDto);
+    public Task<ActionResult<FinTechTransaction?>> CreateTransactionAsync(
+        TransactionDto transactionDto);
     public Task<ActionResult<List<FinTechTransaction>>>
         GetClientTransactionsPagedAsync(ViewTransactionsDto viewTransactionsDto);
-
 }

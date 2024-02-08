@@ -28,10 +28,10 @@ namespace FinTech_App.Controllers
 
         [HttpPost]
         [Route("customer")]
-        public async Task<ActionResult<long>> WithdrawTransactionAsync(
+        public async Task<ActionResult<FinTechTransaction?>> CreateTransactionAsync(
             TransactionDto transactionDto)
         {
-            return await _service.WithdrawTransactionAsync(transactionDto);
+            return await _service.CreateTransactionAsync(transactionDto);
         }
     }
 }

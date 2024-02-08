@@ -23,40 +23,68 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, IGene
     public async Task<ActionResult<T>> Create(T t)
     {
         _logger.LogInformation("Method Create starting");
-        _context.Set<T>().Add(t);
-        await _context.SaveChangesAsync();
-        var result = new CreatedAtActionResult("","GetT", new { id = t.Id }, t);
-        return t;
+        try
+        {
+            _context.Set<T>().Add(t);
+            await _context.SaveChangesAsync();
+            var result = new CreatedAtActionResult("", "GetT", new { id = t.Id }, t);
+            return t;
+        }
+        catch(Exception )
+        {
+            return new BadRequestResult();
+        }
      }
 
     public async Task<IActionResult> Delete(K id)
     {
         _logger.LogInformation("Method Delete starting");
-        var t = await _context.Set<T>().FindAsync(id);
-        if (t == null)
-        {
-            return new NotFoundResult();
+        try 
+        { 
+            var t = await _context.Set<T>().FindAsync(id);
+            if (t == null)
+            {
+                return new NotFoundResult();
+            }
+            _context.Set<T>().Remove(t);
+            await _context.SaveChangesAsync();
+            return new NoContentResult();
         }
-        _context.Set<T>().Remove(t);
-        await _context.SaveChangesAsync();
-        return new NoContentResult();
+        catch (Exception)
+        {
+            return new BadRequestResult();
+        }
     }
 
     public async Task<ActionResult<T>> Read(K id)
     {
         _logger.LogInformation("Method Read starting");
-        var t = await _context.Set<T>().FindAsync(id);
-        if (t == null)
+        try
         {
-            return new NotFoundResult();
+            var t = await _context.Set<T>().FindAsync(id);
+            if (t == null)
+            {
+                return new NotFoundResult();
+            }
+            return t;
         }
-        return t;
+        catch (Exception)
+        {
+            return new BadRequestResult();
+        }
     }
 
     public async Task<ActionResult<IEnumerable<T>>> Read()
     {
         _logger.LogInformation("Method Read starting");
-        return await _context.Set<T>().ToListAsync();
+        try
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+        catch (Exception)
+        {
+            return new BadRequestResult();
+        }
     }
 
     public async Task<IActionResult> Update(K id, T t)
@@ -83,7 +111,9 @@ public class GenericService<T, K> : IGenericService<T, K> where T : class, IGene
             }
             else
             {
-                throw;
+                //Ticket T421 the following line was modified
+                //throw;
+                return new BadRequestResult();
             }
         }
         return new NoContentResult();

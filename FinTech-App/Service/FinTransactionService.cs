@@ -13,7 +13,6 @@ public class FinTransactionService : GenericService<FinTechTransaction, long>
         (FinTechDbContext context, ILogger<GenericService<FinTechTransaction, long>> logger) 
         : base(context, logger)
     { 
-
     }
 
     public async Task<ActionResult<List<FinTechTransaction>>> GetClientTransactionsPagedAsync(
@@ -37,7 +36,7 @@ public class FinTransactionService : GenericService<FinTechTransaction, long>
         }
     }
 
-    public async Task<ActionResult<long>> WithdrawTransactionAsync(TransactionDto transactionDto)
+    public async Task<ActionResult<FinTechTransaction?>> CreateTransactionAsync(TransactionDto transactionDto)
     {
         _logger.LogInformation("Method WithdrawTransactionAsync starting");
         var account = await _context.Accounts.FindAsync(transactionDto.AccountId);
@@ -54,7 +53,7 @@ public class FinTransactionService : GenericService<FinTechTransaction, long>
             };
             _context.Transactions.Add(finTechTransaction);
             await _context.SaveChangesAsync();
-            return finTechTransaction.Id;
+            return finTechTransaction;
         }
         catch (Exception)
         {

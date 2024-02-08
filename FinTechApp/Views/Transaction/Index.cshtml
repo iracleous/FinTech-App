@@ -1,0 +1,33 @@
+﻿@{
+}
+@model IEnumerable<FinTech_App.Model.FinTechTransaction>
+
+
+    <style>
+    #TransactionsList tr, td{
+        border:solid; 
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        
+    }
+    </style>
+
+@if (Model!=null && Model.Count() != 0)
+{    <table id="TransactionsList">
+        @foreach(var transaction in Model) {
+        <tr><td>@transaction.Id</td>
+            <td>@transaction.DateTime</td>
+            <td>@transaction.TransactionCategory</td>
+            <td>@transaction.Account?.Balance</td>
+        </tr>   
+        }
+    </table>
+}
+else
+{
+    <p> No transactions found!</p>
+}
+<hr />
+<a asp-action="CreateTransaction">Create a new transaction</a>

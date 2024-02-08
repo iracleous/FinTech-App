@@ -1,7 +1,12 @@
+using FinTechApp.Communication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IClientDataService, ClientDataService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+
 
 var app = builder.Build();
 

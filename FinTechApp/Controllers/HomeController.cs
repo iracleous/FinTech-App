@@ -10,14 +10,17 @@ namespace FinTechApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IClientDataService _dataService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IClientDataService clientDataService)
         {
             _logger = logger;
+            _dataService = clientDataService;
         }
 
         public IActionResult Index()
         {
+            _logger.Log(LogLevel.Information, "Index was requested");
             return View();
         }
 
@@ -26,14 +29,14 @@ namespace FinTechApp.Controllers
             return View();
         }
 
-        public IActionResult Client()
+        public async Task<IActionResult> Client()
         {
-            return View(ClientData.GetClients());
+            return View(await _dataService.GetClientsAsync());
         }
 
         public async Task<IActionResult> aClient(int id)
         {
-            return View(await ClientData.GetClientAsync(id));
+            return View(await _dataService.GetClientAsync(id));
         }
 
         public IActionResult CreateClient()
@@ -44,16 +47,19 @@ namespace FinTechApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoCreateClient(Client client) {
-            await ClientData.CreateClientAsync(client);
+            await _dataService.CreateClientAsync(client);
             return Redirect("Client");
         }
 
         [HttpPost]
-        public IActionResult DeleteClient(long clientId)
+        public async Task<IActionResult> DeleteClient(long clientId)
         {
-            ClientData.DeleteClient(clientId);
+            await _dataService.DeleteClientAsync(clientId);
             return Redirect("Client");
         }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model FinTechApp.dto.TransactionViewDto
+
+<style>
+    #CreateTransaction tr, td, th {
+        border: none;
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
+</style>
+
+<h1> Create Transaction</h1>
+<form asp-action="CreateTransaction">
+
+<table id="TransactionTable">
+    <tr>
+            <th>Clients </th>
+            <td>
+                <select id="ClientId" asp-items="@Model.Clients" asp-for="@Model.TransactionDto.ClientId">
+                    <option value="0" selected disabled>-- Select Client --</option>
+                </select>
+                <span asp-validation-for="@Model.TransactionDto.ClientId" class="text-danger"></span>
+
+            </td>
+    </tr>
+    <tr>
+        <th>Accounts </th>
+        <td>
+            <select id="AccountId" asp-items="@Model.Accounts" asp-for="@Model.TransactionDto.AccountId">
+                <option value="0" selected disabled>-- Select Account --</option>
+            </select>
+                <span asp-validation-for="@Model.TransactionDto.AccountId" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Amount </th>
+        <td>
+            <input type="number" placeholder="amount" asp-for="@Model.TransactionDto.Amount" />
+                <span asp-validation-for="@Model.TransactionDto.Amount" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Transaction type </th>
+        <td>
+            <select id="AccountList" asp-items="@Html.GetEnumSelectList<FinTech_App.Model.TransactionCategory>()"
+                    asp-for="@Model.TransactionDto.Category"></select>
+                <span asp-validation-for="@Model.TransactionDto.Category" class="text-danger"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Employee name</th>
+        <td>
+            <input type="text" placeholder="employee" asp-for="@Model.TransactionDto.EmployeeName" />
+                <span asp-validation-for="@Model.TransactionDto.EmployeeName" class="text-danger"></span>
+
+        </td>
+    </tr>
+        <tr>
+             
+            <td colspan="2">
+                <input type="submit" value="Submit Transaction" />
+
+            </td>
+        </tr>
+</table>
+ 
+  
+</form>
