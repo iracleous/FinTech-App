@@ -1,0 +1,13 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-controller="Home" asp-action="DoUpload" enctype="multipart/form-data">
+    <input type="file" id="myFile" name="files"  accept="image/*" required><br />
+    <input type="text" name="description" placeholder="description" required="required" /><br />
+    <input type="submit" value="file upload">
+</form>
+
+<a asp-controller="Home"  asp-action="Index">Goto Index</a>

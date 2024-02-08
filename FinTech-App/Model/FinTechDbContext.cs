@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FinTechApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinTech_App.Model;
 
@@ -7,6 +8,7 @@ public class FinTechDbContext:DbContext
     public DbSet<Client> Clients { get; set; }
     public DbSet<Account> Accounts { get; set; }
     public DbSet<FinTechTransaction> Transactions { get; set; }
+    public DbSet<ImageTemplate> Images { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

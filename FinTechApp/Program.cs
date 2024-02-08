@@ -1,4 +1,6 @@
+using FinTech_App.Model;
 using FinTechApp.Communication;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IClientDataService, ClientDataService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
-
+var optionsCon = builder.Configuration.GetConnectionString("MyConn");
+builder.Services.AddDbContext<FinTechDbContext>(options => options.UseSqlServer(optionsCon));
 
 var app = builder.Build();
 
