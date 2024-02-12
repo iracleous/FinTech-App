@@ -13,7 +13,7 @@ public class ImageController : Controller
     public IActionResult GenerateImageSkia()
     {
         // Create a bitmap object
-        using SKBitmap bitmap = new(200, 100);
+        using SKBitmap bitmap = new(450, 100);
         // Create a canvas from the bitmap
         using SKCanvas canvas = new(bitmap);
         // Clear the canvas with white color
@@ -21,12 +21,12 @@ public class ImageController : Controller
         // Draw a red rectangle on the canvas
         using SKPaint paint = new();
         paint.Color = SKColors.Red;
-        canvas.DrawRect(new SKRect(10, 10, 190, 90), paint);
+        canvas.DrawRect(new SKRect(10, 10, 420, 90), paint);
         // Draw text on the canvas
         using SKPaint textPaint = new();
         textPaint.Color = SKColors.White;
-        textPaint.TextSize = 20;
-        canvas.DrawText("Dynamic Image", 20, 50, textPaint);
+        textPaint.TextSize = 26;
+        canvas.DrawText("Universal NBG image", 20, 50, textPaint);
         // Encode the bitmap to a PNG image
         using SKImage image = SKImage.FromBitmap(bitmap);
         using SKData data = image.Encode(SKEncodedImageFormat.Png, 100);

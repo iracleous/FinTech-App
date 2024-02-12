@@ -1,0 +1,105 @@
+﻿@using FinTech_App.Dto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<GraphDataDto>
+
+ 
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+ 
+<div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
+
+Type of chart
+<Select onchange="drawChart(this.value)">
+    <option value="Line" >Line</option>
+    <option value="Pie">Pie</option>
+    <option value="Bar">Bar</option>
+    <option value="Column">Column</option>
+    <option value="Scatter">Scatter</option>
+    </Select>
+
+
+<script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart(method) {
+         var basicData = [
+            ['Country', 'Mhl']]
+
+
+            rawData  =  [  
+             ['Italy', 55],
+            ['France', 49],
+            ['Spain', 44],
+            ['USA', 24],
+            ['Argentina', 15]
+            ];
+/**/ //TODO ***
+   //     rawData = JsonConvert.SerializeObject(@Model))
+        
+
+            rawData.forEach(item => basicData.push(item))
+            
+
+
+        // Set Data
+        const data = google.visualization.arrayToDataTable(  basicData);
+
+        // Set Options
+        const options = {
+          title:'World Wide Wine Production'
+        };
+
+        
+
+        // Draw
+       // const chart = new google.visualization.LineChart(document.getElementById('myChart'));
+      //  chart.draw(data, options);
+        switch (method) {
+
+            case "Pie":
+                  chart = new google.visualization.PieChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+                return;
+            case "Bar":
+                  chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+                return;
+            case "Scatter":
+                  chart = new google.visualization.ScatterChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+                return;
+            case "Column":
+                  chart = new google.visualization.ColumnChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+                return;
+
+
+            case "Line":
+            default:
+                  chart = new google.visualization.LineChart(document.getElementById('myChart'));
+                chart.draw(data, options);
+                return;
+        }
+
+
+        }
+
+ 
+        // Draw
+       
+
+
+    function getData() {
+       // url = 
+    }
+
+
+
+    </script>
+
+ 

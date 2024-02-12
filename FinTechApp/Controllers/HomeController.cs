@@ -1,3 +1,4 @@
+using FinTech_App.Dto;
 using FinTech_App.Model;
 using FinTechApp.Communication;
 using FinTechApp.Models;
@@ -111,11 +112,27 @@ namespace FinTechApp.Controllers
             return View(images);
         }
 
+ 
+
+        public IActionResult Graph()
+        {
+            List<GraphDataDto> graph = new ()
+            {
+                new (){   Country="Italy", Size=55 },
+                 new (){   Country="France", Size=49 },
+                 new (){   Country="Spain", Size=44 },
+            };
+
+            return View(graph);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
     }
 }
