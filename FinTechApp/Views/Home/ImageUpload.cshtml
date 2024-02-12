@@ -10,4 +10,15 @@
     <input type="submit" value="file upload">
 </form>
 
+<hr />
+
+<form asp-action="UploadFile" asp-controller="File" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button type="submit">Upload</button>
+</form>
+
 <a asp-controller="Home"  asp-action="Index">Goto Index</a>
+
+
+
+

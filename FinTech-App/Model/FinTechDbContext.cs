@@ -9,6 +9,7 @@ public class FinTechDbContext:DbContext
     public DbSet<Account> Accounts { get; set; }
     public DbSet<FinTechTransaction> Transactions { get; set; }
     public DbSet<ImageTemplate> Images { get; set; }
+    public DbSet<FileModel> Files { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

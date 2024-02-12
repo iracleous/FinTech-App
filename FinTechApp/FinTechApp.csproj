@@ -10,4 +10,12 @@
     <ProjectReference Include="..\FinTech-App\FinTech-Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.88.7" />
+  </ItemGroup>
+
 </Project>
